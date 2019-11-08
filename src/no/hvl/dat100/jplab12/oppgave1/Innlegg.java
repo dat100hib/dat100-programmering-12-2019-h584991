@@ -5,10 +5,10 @@ import no.hvl.dat100.jplab12.common.TODO;
 public abstract class Innlegg {
 	
 	// TODO - deklarering av objektvariable
-	private int id;
-	private String bruker;
-	private String dato;
-	private int likes;
+	protected int id;
+	protected String bruker;
+	protected String dato;
+	protected int likes;
 	
 	public Innlegg() {
 		
