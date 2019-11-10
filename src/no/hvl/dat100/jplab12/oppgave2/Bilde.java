@@ -4,9 +4,10 @@ import no.hvl.dat100.jplab12.common.TODO;
 
 public class Bilde extends Tekst {
 
-	// TODO - objekt variable
+	// Oppretter en ny objektvariabel url som protected i tilfelle den trengs av en subklasse senere.
 	protected String url;
 	
+	// Initsialiserer konstruktørene slik som de forrige klassene, nå bare med url varaiabel i tillegg
 	public Bilde(int id, String bruker, String dato, String tekst, String url) {
 		this.id = id;
 		this.bruker = bruker;
@@ -25,6 +26,7 @@ public class Bilde extends Tekst {
 		this.url = url;
 	}
 	
+	// Legger inn get og set metoder for url variabelen.
 	public String getUrl() {
 		return url;
 	}
@@ -35,6 +37,7 @@ public class Bilde extends Tekst {
 
 	@Override
 	public String toString() {
+		// oppdaterer toString metoden med ny variabel.
 		String s = "BILDE\n" + id + "\n" + bruker + "\n" + dato +"\n" + likes + "\n" + tekst + "\n" + url + "\n";
 		return s;
 	}

@@ -5,14 +5,15 @@ import no.hvl.dat100.jplab12.common.TODO;
 
 public class Tekst extends Innlegg {
 
-	// TODO: objektvariable 
-	
+	// Oppretter en ny objektvariabel for tekst og setter den som protected slik at bilde klassen
+	// også kan bruke den.
 	protected String tekst;
 	
 	public Tekst () {
 		
 	}
 	
+	// Oppretter to konstruktører på samme måte som i innlegg klassen.
 	public Tekst(int id, String bruker, String dato, String tekst) {
 		this.id = id;
 		this.bruker = bruker;
@@ -29,6 +30,7 @@ public class Tekst extends Innlegg {
 		this.tekst = tekst;
 	}
 	
+	// Legger til get og set metoder for den nye objektvariabelen.
 	public String getTekst() {
 		return tekst;
 	}
@@ -39,6 +41,7 @@ public class Tekst extends Innlegg {
 
 	@Override
 	public String toString() {
+		//Oppdaterer  toString metoden fra Innlegg klassen slik at den nye objektvariabelen er med.
 		String s = "TEKST\n" + id + "\n" + bruker + "\n" + dato +"\n" + likes + "\n" + tekst + "\n";
 		return s;
 	}
