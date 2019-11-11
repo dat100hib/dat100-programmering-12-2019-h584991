@@ -47,7 +47,7 @@ public class Bilde extends Tekst {
 		
 		String s = "\t\t<h2>" + bruker + "@" + dato + " [" + likes + "]<h2>\n" +
 				   "\t\t<p>" + tekst + "<p>\n" + 
-				   "\t\t<iframe src=\"" + url + "\" height=600 width=800></iframe><hr>"; 
+				   "\t\t<iframe src=\"" + url + "\" height=600 width=800></iframe><hr>\n"; 
 		return s;
 				
 	}
