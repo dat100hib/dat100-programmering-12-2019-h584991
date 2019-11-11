@@ -117,72 +117,102 @@ public class Blogg {
 	// valgfrie oppgaver nedenfor
 	
 	public void utvid() {
+		// Finner ny lengde ved å doble gammel lengde
 		int nyLengde = innleggtabell.length*2;
+		// Lager en ny tabell med ny lengde
 		Innlegg[] utvidetTabell = new Innlegg[nyLengde];
+		// Går gjennom alle elementer i den gamle tabellen og flytter dem over i den nye
 		for (int i = 0; i < nesteledig; i++) {
 			utvidetTabell[i] = innleggtabell[i];
 		}
+		// Oppdaterer objektvariabelen til den nye tabellen.
 		innleggtabell = utvidetTabell;
 	}
 	
 	public boolean leggTilUtvid(Innlegg innlegg) {
-		
+		// Lager en boolean som starter som falsk
 		boolean lagtTil = false;
+		// Sjekker om innlegget er i tabellen fra før og om det er ledig plass
 		if (!finnes(innlegg) && ledigPlass()) {
+			// Dersom det er plass legges innlegget til listen, booleanen endres til true og nesteledig inkrementeres.
 			innleggtabell[nesteledig] = innlegg;
 			lagtTil = true;
 			nesteledig += 1;
 		}
+		// Hvis innlegget finnes i tabellen, eller dersom det ikke er ledig plass så sjekker vi kun om innlegget finnes i tabellen fra før.
 		else if (!finnes(innlegg)) {
+			// Dersom innlegget ikke finnes i listen utvider vi tabellen.
 			utvid();
+			// sjekker så på nytt om det er ledig plass og om innlegget allerede er i tabellen
 			if 	(!finnes(innlegg) && ledigPlass()) {
+				// Dersom det er ledig plass og innlegget ikke fins fra før, legges det til i listen, boolean endres til true og neste ledig inkrementeres.
 				innleggtabell[nesteledig] = innlegg;
 				lagtTil = true;
 				nesteledig += 1;
 			}
 		}
+		// returnerer boolean
 		return lagtTil;
 	}
 	
 	public boolean slett(Innlegg innlegg) {
-		
+		// Oppretter en boolean med verdien false
 		boolean slettet = false;
+		// finner indeksen til innlegget.
 		int indeks = finnInnlegg(innlegg);
+		// Oppretter en teller
 		int teller = 0;
+		// Dersom indeksten er større eller lik 0 og innlegget finnes i tabellen
 		if (indeks >= 0 && finnes(innlegg)) {
+			// Oppretter en ny tabell
 			Innlegg[] nySamling = new Innlegg[innleggtabell.length];
+			// Går gjennom alle elementer i den gamle tabellen
 			for (int i = 0; i < nesteledig; i++) {
+				// Dersom indeksen ikke stemmer med innlegget som skal slettes sin indeks så kopieres innlegget over i den nye listen og telleren inkrementeres.
 				if (i != indeks) {
 					nySamling[teller] = innleggtabell[i];
 					teller++;
 				}
 			}
+			// Oppdaterer objektvariabelen til den nye listen og trekker fra en fra neste ledig siden et innlegg har blitt slettet, oppdaterer boolean til true
 			innleggtabell = nySamling;
 			nesteledig--;
 			slettet = true;
 		}
+		// Returnerer boolean.
 		return slettet;
 	}
 	
 	public int[] search(String keyword) {
+		// Lager en ny liste med lengde lik tabbelens lengde
 		int[] indekser = new int[innleggtabell.length];
+		// Lager en variabel som holder styr på neste ledige plass.
 		int nesteLedigeInt = 0;
+		// Går gjennom alle elementene i tabellen.
 		for (int i = 0; i < nesteledig; i++) {
+			// oppretter en streng med all infoen til objektet.
 			String s = innleggtabell[i].toString();
+			// Splitter strengen slik at infoen er separert.
 			String[] tabell = s.split("\n");
+			// Sjekker om 5. elemetet i den splittede strengen (som inneholder teksten) inneholder keyword.
 			if (tabell[5].contains(keyword)) {
+				// legger ii så fall til indeksen i listen over indekser og inkremeterer nesteLedigeInt.
 				indekser[nesteLedigeInt] = i;
 				nesteLedigeInt++;
 			}
 		}
+		// Dersom listen inneholder et element eller flere
 		if (nesteLedigeInt > 0) {
+			// Oppretter en ny liste med like mange element som det er indekser.
 			int[] indeksListe = new int[nesteLedigeInt];
+			// Legger til indeksene i den nye tabellen
 			for (int i = 0; i < nesteLedigeInt; i++) {
 				indeksListe[i] = indekser[i];
 			}
+			// Oppdaterer indeks variabelen med den oppdaterte listen
 			indekser = indeksListe;
 		}
-		
+		// Returnerer listen med indekser.
 		return indekser;
 
 	}
