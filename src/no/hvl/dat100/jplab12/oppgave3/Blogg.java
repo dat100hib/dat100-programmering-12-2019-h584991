@@ -6,8 +6,8 @@ import no.hvl.dat100.jplab12.oppgave1.*;
 public class Blogg {
 
 	// Oppretter objektvariabler.
-	private Innlegg[] innleggtabell;
-	private int nesteledig;
+	protected Innlegg[] innleggtabell;
+	protected int nesteledig;
 
 	// definerer to konstruktører for klassen, en med spesifisert lengde og en uten.
 	public Blogg() {
